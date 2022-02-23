@@ -1,3 +1,4 @@
+using BlazorMediatorDemo.Api.Services.Hosted;
 using BlazorMediatorDemo.Shared;
 using BlazorMediatorDemo.Shared.Services;
 using MediatR;
@@ -14,6 +15,7 @@ builder.Services.AddSingleton<IPersonService, PersonService>();
 builder.Services.AddSingleton<ITemperatureService, TemperatureService>();
 builder.Services.AddSingleton<IWalletService, WalletService>();
 builder.Services.AddMediatR(typeof(LibraryMediatREntryPoint).Assembly);
+builder.Services.AddHostedService<MinuteHasChangeNotificationService>();
 
 var app = builder.Build();
 
