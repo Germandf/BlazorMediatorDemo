@@ -1,6 +1,6 @@
 ﻿namespace BlazorMediatorDemo.Shared.Models;
 
-public class PersonModel
+public class Person
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

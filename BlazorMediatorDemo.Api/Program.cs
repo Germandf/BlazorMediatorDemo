@@ -1,5 +1,5 @@
 using BlazorMediatorDemo.Shared;
-using BlazorMediatorDemo.Shared.DataAccess;
+using BlazorMediatorDemo.Shared.Services;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
+builder.Services.AddSingleton<IPersonService, PersonService>();
+builder.Services.AddSingleton<ITemperatureService, TemperatureService>();
+builder.Services.AddSingleton<IWalletService, WalletService>();
 builder.Services.AddMediatR(typeof(LibraryMediatREntryPoint).Assembly);
 
 var app = builder.Build();

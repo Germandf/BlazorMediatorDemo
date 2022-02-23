@@ -3,4 +3,4 @@ using MediatR;
 
 namespace BlazorMediatorDemo.Shared.Cqrs.Queries;
 
-public record GetPersonByIdQuery(int Id) : IRequest<Person?>;
+public record GetWalletListQuery() : IRequest<List<Wallet>>;

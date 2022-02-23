@@ -1,22 +1,22 @@
 ﻿using BlazorMediatorDemo.Shared.Cqrs.Commands;
-using BlazorMediatorDemo.Shared.DataAccess;
+using BlazorMediatorDemo.Shared.Services;
 using BlazorMediatorDemo.Shared.Models;
 using MediatR;
 
 namespace BlazorMediatorDemo.Shared.Cqrs.Handlers
 {
-    public class InsertPersonHandler : IRequestHandler<InsertPersonCommand, PersonModel>
+    public class InsertPersonHandler : IRequestHandler<InsertPersonCommand, Person>
     {
-        private readonly IDataAccess _dataAccess;
+        private readonly IPersonService _personService;
 
-        public InsertPersonHandler(IDataAccess dataAccess)
+        public InsertPersonHandler(IPersonService dataAccess)
         {
-            _dataAccess = dataAccess;
+            _personService = dataAccess;
         }
 
-        public Task<PersonModel> Handle(InsertPersonCommand request, CancellationToken cancellationToken)
+        public Task<Person> Handle(InsertPersonCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_dataAccess.InsertPerson(request.FirstName, request.LastName));
+            return Task.FromResult(_personService.InsertPerson(request.FirstName, request.LastName));
         }
     }
 }

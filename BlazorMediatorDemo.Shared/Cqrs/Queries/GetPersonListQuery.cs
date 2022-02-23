@@ -3,4 +3,4 @@ using MediatR;
 
 namespace BlazorMediatorDemo.Shared.Cqrs.Queries;
 
-public record GetPersonListQuery() : IRequest<List<PersonModel>>;
+public record GetPersonListQuery() : IRequest<List<Person>>;

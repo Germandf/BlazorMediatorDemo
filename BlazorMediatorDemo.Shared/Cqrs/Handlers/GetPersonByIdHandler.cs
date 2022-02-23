@@ -1,21 +1,21 @@
 ﻿using BlazorMediatorDemo.Shared.Cqrs.Queries;
-using BlazorMediatorDemo.Shared.DataAccess;
+using BlazorMediatorDemo.Shared.Services;
 using BlazorMediatorDemo.Shared.Models;
 using MediatR;
 
 namespace BlazorMediatorDemo.Shared.Cqrs.Handlers;
 
-public class GetPersonByIdHandler : IRequestHandler<GetPersonByIdQuery, PersonModel?>
+public class GetPersonByIdHandler : IRequestHandler<GetPersonByIdQuery, Person?>
 {
-    private readonly IDataAccess _dataAccess;
+    private readonly IPersonService _personService;
 
-    public GetPersonByIdHandler(IDataAccess dataAccess)
+    public GetPersonByIdHandler(IPersonService dataAccess)
     {
-        _dataAccess = dataAccess;
+        _personService = dataAccess;
     }
 
-    public Task<PersonModel?> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
+    public Task<Person?> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(_dataAccess.GetPerson(request.Id));
+        return Task.FromResult(_personService.GetPerson(request.Id));
     }
 }

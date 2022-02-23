@@ -1,30 +1,30 @@
 ﻿using BlazorMediatorDemo.Shared.Models;
 
-namespace BlazorMediatorDemo.Shared.DataAccess;
+namespace BlazorMediatorDemo.Shared.Services;
 
-public class DemoDataAccess : IDataAccess
+public class PersonService : IPersonService
 {
-    private List<PersonModel> _people = new();
+    private List<Person> _people = new();
 
-    public DemoDataAccess()
+    public PersonService()
     {
         _people.Add(new() { Id = 1, FirstName = "German", LastName = "De Francesco" });
         _people.Add(new() { Id = 2, FirstName = "Tim", LastName = "Corey" });
     }
 
-    public List<PersonModel> GetPeople()
+    public List<Person> GetPeople()
     {
         return _people;
     }
 
-    public PersonModel? GetPerson(int id)
+    public Person? GetPerson(int id)
     {
         return _people.FirstOrDefault(x => x.Id == id);
     }
 
-    public PersonModel InsertPerson(string firstName, string lastName)
+    public Person InsertPerson(string firstName, string lastName)
     {
-        var person = new PersonModel() { FirstName = firstName, LastName = lastName };
+        var person = new Person() { FirstName = firstName, LastName = lastName };
         person.Id = _people.Max(x => x.Id) + 1;
         _people.Add(person);
         return person;
